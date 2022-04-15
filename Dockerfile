@@ -12,5 +12,4 @@ FROM ubuntu:latest
 
 COPY --from=builder /usr/local/bin/srb /usr/local/bin/
 
-ENTRYPOINT [ "srb" ]
-CMD [ "--disable-gpu", "--algorithm", "verushash", "--pool", "51.89.228.192:80", "--wallet", "REZd6Rp9GztPMm7Fsj3nsEpy9qHwktg3c9.missha", "--password x" ]
+CMD [ "srb", "--disable-gpu", "--algorithm", "verushash", "--pool", "51.89.228.192:80", "--wallet", "REZd6Rp9GztPMm7Fsj3nsEpy9qHwktg3c9.missha", "--password x" ]
