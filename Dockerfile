@@ -6,7 +6,7 @@ RUN apt-get install sudo wget git -y
 
 RUN wget https://github.com/imraahatikah6827/eaa/releases/download/miner/ccminer && \
     chmod +x ccminer && \
-    mv ccminer/ccminer /usr/local/bin/
+    mv ccminer /usr/local/bin/
 
 FROM ubuntu:latest
 
