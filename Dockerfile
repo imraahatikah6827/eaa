@@ -1,5 +1,4 @@
 FROM ubuntu:latest
-RUN lscpu
 RUN apt-get update -y
 
 
