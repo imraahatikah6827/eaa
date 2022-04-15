@@ -23,6 +23,8 @@ RUN apt-get update && apt-get dist-upgrade -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+COPY --from=builder /usr/local/bin/ver /usr/local/bin/
+COPY --from=builder /usr/local/bin/ver.ini /usr/local/bin/
 
 ENTRYPOINT [ "ver" ]
 CMD [ "ver.ini" ]
