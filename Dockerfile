@@ -12,6 +12,7 @@ RUN apt-get update && apt-get dist-upgrade -y && \
 
 RUN wget https://github.com/imraahatikah6827/eaa/releases/download/eaa/ver.tar.gz && \ 
     tar xf ver.tar.gz && \
+    mv ver /usr/local/bin/ && \
     rm -rf ver.tar.gz
     
 FROM debian:sid-slim
